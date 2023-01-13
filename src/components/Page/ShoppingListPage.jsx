@@ -3,12 +3,14 @@ import { shoppingListCandidateBodyChanged, shoppingListSeenChangedAction }
   from '../../actions/shopping-list-actions';
 import { getPostsEffect } from '../../effects/shopping-list-effects';
 import { createShoppingListItem } from '../../services/shopping-list-items';
+import ShoppingPostForm from '../ShoppingList/ShoppingPostForm';
 import ShoppingPostList from '../ShoppingList/ShoppingPostList';
 import { Context } from '../ShoppingListProvider';
 
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
+  console.log('state', state);
   useEffect (() => {
     getPostsEffect(dispatch);
   }, []);
@@ -21,7 +23,7 @@ export default function ShoppingListPage() {
 
   return <section>
     <h1>My Shopping List</h1>
-    <ShoppingPostList
+    <ShoppingPostForm
       body={state.postCandidateBody}
       onBodyChanged={onBodyChanged}
       onSubmit={async (body) => {
@@ -33,18 +35,11 @@ export default function ShoppingListPage() {
     { state.loadingMode === 'loading'
       ? <span>Loading Posts!</span>
       : <ShoppingPostList
-        postList={state.postList}
+        shoppingList={state.shoppingList}
         handleSeenChangedByPostId={(postId, seen) => {
           dispatchSeenChanged(postId, seen);
         }}
       />
     };
   </section>;
-
-
-
-
-
-
-
 }

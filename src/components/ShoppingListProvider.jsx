@@ -13,7 +13,7 @@ export const Context = createContext({
   reducer,
 });
 
-export const PostListProvider = ({ children }) => {
+export const ShoppingListProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     reducerLogger(reducer),
     initialState(),
