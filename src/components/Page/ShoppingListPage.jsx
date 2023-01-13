@@ -3,6 +3,7 @@ import { shoppingListCandidateBodyChanged, shoppingListSeenChangedAction }
   from '../../actions/shopping-list-actions';
 import { getPostsEffect } from '../../effects/shopping-list-effects';
 import { createShoppingListItem } from '../../services/shopping-list-items';
+import ShoppingPostList from '../ShoppingList/ShoppingPostList';
 import { Context } from '../ShoppingListProvider';
 
 
