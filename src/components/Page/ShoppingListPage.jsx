@@ -6,7 +6,10 @@ import {
   shoppingListSeenChangedAction } 
   from '../../actions/shopping-list-actions';
 import { getPostsEffect } from '../../effects/shopping-list-effects';
-import { createShoppingListItem } from '../../services/shopping-list-items';
+import { 
+  createShoppingListItem, 
+  updateShoppingItem } 
+  from '../../services/shopping-list-items';
 import ShoppingPostForm from '../ShoppingList/ShoppingPostForm';
 import ShoppingPostList from '../ShoppingList/ShoppingPostList';
 import { Context } from '../ShoppingListProvider';
@@ -32,7 +35,10 @@ export default function ShoppingListPage() {
   
   const dispatchSeenChanged = (postId, seen) => {
     dispatch(shoppingListSeenChangedAction(postId, seen));
+    updateShoppingItem(dispatch);
   };
+
+
   return <section>
     <h1>My Shopping List</h1>
     <ShoppingPostForm
@@ -44,8 +50,6 @@ export default function ShoppingListPage() {
       onQuantityChanged={onQuantityChanged}
       onSubmit={async (body, description, quantity) => {
         await createShoppingListItem(body, description, quantity);
-        console.log('body -' + body, 'description -' + description, 
-          'quantity -' + quantity);
         getPostsEffect(dispatch); 
         dispatch(shoppingListCandidateBodyChanged(''));
         dispatch(shoppingListCandidateDescriptionChanged(''));

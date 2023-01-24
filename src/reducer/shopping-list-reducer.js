@@ -47,6 +47,25 @@ export const reducer = (state, action) => {
         ...state,
         postCandidateQuantity: action.quantity,
       };
+
+    case 'shopping-list-seen-changed': { 
+      const newList = [...state.shoppingList];
+      const newIndex = newList.findIndex(
+        item => item.id === action.itemId
+      );
+      newList[newIndex] = {
+        ...newList[newIndex],
+        checked: action.checked 
+      };
+      return { 
+        ...state,
+        shoppingList: newList
+      };
+    }
+
+
+
+      
     case 'shopping-list-seen-changed': {
       const shoppingList = [...state.shoppingList];
       const index = shoppingList.findIndex(post => post.id === action.postId);
