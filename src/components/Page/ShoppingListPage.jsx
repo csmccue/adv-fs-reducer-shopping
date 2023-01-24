@@ -14,9 +14,11 @@ export default function ShoppingListPage() {
   useEffect (() => {
     getPostsEffect(dispatch);
   }, []);
+
   const onBodyChanged = (body) => {
     dispatch(shoppingListCandidateBodyChanged(body));
   };
+  
   const dispatchSeenChanged = (postId, seen) => {
     dispatch(shoppingListSeenChangedAction(postId, seen));
   };
