@@ -12,13 +12,13 @@ export default function ShoppingPostForm({
   }}>
     <textarea 
       type="text"
-      placeholder="what are you buying?" 
+      placeholder="Item" 
       value={ body } onChange={(e) => {
         onBodyChanged(e.target.value);
       }}/>
     <textarea 
       type="text"
-      placeholder="what are you buying?" 
+      placeholder="Description" 
       value={ description } onChange={(e) => {
         onBodyChanged(e.target.value);
       }}/>
