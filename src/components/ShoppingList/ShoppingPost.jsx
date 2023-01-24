@@ -5,5 +5,7 @@ export default function ShoppingPost({ post, handleSeenChanged }) {
     }}/>
     {post.id}
     {post.item_name}
+    {post.quantity}
+    {post.description}
   </div>;
 }
