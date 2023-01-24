@@ -2,17 +2,19 @@ export default function ShoppingPostForm({
   body,
   onBodyChanged,
   onSubmit,
-  description,
   quantity,
   onQuantityChange
 }) {
   return <form onSubmit={(e) => {
     e.preventDefault();
-    onSubmit(body, description);
+    onSubmit(body);
   }}>
-    <textarea value={ body } onChange={(e) => {
-      onBodyChanged(e.target.value);
-    }}/>
+    <textarea 
+      type="text"
+      placeholder="what are you buying?" 
+      value={ body } onChange={(e) => {
+        onBodyChanged(e.target.value);
+      }}/>
     <input
       type="number"
       placeholder="how many?"
