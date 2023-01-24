@@ -3,6 +3,8 @@ export const initialState = () => {
     loadingMode: 'at-rest',
     loadingError: null,
     postCandidateBody: '',
+    postCandidateDescription: '',
+    postCandidateQuantity: '',
     shoppingList: [],
   };
 };
@@ -34,7 +36,17 @@ export const reducer = (state, action) => {
         ...state,
         postCandidateBody: action.body,
       };
-
+    case 'shopping-list-candidate-description-changed':
+      return {
+        ...state,
+        postCandidateDescription: action.description,
+      }; 
+      
+    case 'shopping-list-candidate-quantity-changed':
+      return {
+        ...state,
+        postCandidateQuantity: action.quantity,
+      };
     case 'shopping-list-seen-changed': {
       const shoppingList = [...state.shoppingList];
       const index = shoppingList.findIndex(post => post.id === action.postId);

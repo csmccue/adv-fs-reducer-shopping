@@ -33,4 +33,17 @@ export const shoppingListSeenChangedAction = (postId, seen) => {
   };
 };
 
+export const shoppingListCandidateDescriptionChanged = (description) => {
+  return {
+    description,
+    type: 'shopping-list-candidate-description-changed',
+  };
+};
+
+export const shoppingListCandidateQuantityChanged = (quantity) => {
+  return {
+    quantity,
+    type: 'shopping-list-candidate-quantity-changed',
+  };
+};
 

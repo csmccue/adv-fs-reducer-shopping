@@ -4,7 +4,8 @@ export default function ShoppingPostForm({
   description,
   onSubmit,
   quantity,
-  onQuantityChange
+  onQuantityChanged,
+  onDescriptionChanged
 }) {
   return <form onSubmit={(e) => {
     e.preventDefault();
@@ -13,21 +14,23 @@ export default function ShoppingPostForm({
     <textarea 
       type="text"
       placeholder="Item" 
-      value={ body } onChange={(e) => {
+      value={ body } 
+      onChange={(e) => {
         onBodyChanged(e.target.value);
       }}/>
     <textarea 
       type="text"
       placeholder="Description" 
-      value={ description } onChange={(e) => {
-        onBodyChanged(e.target.value);
+      value={ description } 
+      onChange={(e) => {
+        onDescriptionChanged(e.target.value);
       }}/>
     <input
       type="number"
-      placeholder="how many?"
+      placeholder="How many?"
       value={ quantity }
       onChange={(e) => {
-        onQuantityChange(e.target.value);
+        onQuantityChanged(e.target.value);
       }}/>
     <button type="submit">submit</button>
   </form>;

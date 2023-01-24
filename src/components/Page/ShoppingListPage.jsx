@@ -1,5 +1,9 @@
 import { useContext, useEffect } from 'react';
-import { shoppingListCandidateBodyChanged, shoppingListSeenChangedAction } 
+import { 
+  shoppingListCandidateBodyChanged, 
+  shoppingListCandidateDescriptionChanged, 
+  shoppingListCandidateQuantityChanged, 
+  shoppingListSeenChangedAction } 
   from '../../actions/shopping-list-actions';
 import { getPostsEffect } from '../../effects/shopping-list-effects';
 import { createShoppingListItem } from '../../services/shopping-list-items';
@@ -10,7 +14,7 @@ import { Context } from '../ShoppingListProvider';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
-  // console.log('state', state);
+  console.log('state', state);
   useEffect (() => {
     getPostsEffect(dispatch);
   }, []);
@@ -18,20 +22,34 @@ export default function ShoppingListPage() {
   const onBodyChanged = (body) => {
     dispatch(shoppingListCandidateBodyChanged(body));
   };
+  const onDescriptionChanged = (description) => {
+    dispatch(shoppingListCandidateDescriptionChanged(description));
+  };
+
+  const onQuantityChanged = (quantity) => {
+    dispatch(shoppingListCandidateQuantityChanged(quantity));
+  };
   
   const dispatchSeenChanged = (postId, seen) => {
     dispatch(shoppingListSeenChangedAction(postId, seen));
   };
-
   return <section>
     <h1>My Shopping List</h1>
     <ShoppingPostForm
       body={state.postCandidateBody}
+      description={state.postCandidateDescription}
+      quantity={state.postCandidateQuantity}
       onBodyChanged={onBodyChanged}
-      onSubmit={async (body) => {
-        await createShoppingListItem(body);
+      onDescriptionChanged={onDescriptionChanged}
+      onQuantityChanged={onQuantityChanged}
+      onSubmit={async (body, description, quantity) => {
+        await createShoppingListItem(body, description, quantity);
+        console.log('body -' + body, 'description -' + description, 
+          'quantity -' + quantity);
         getPostsEffect(dispatch); 
         dispatch(shoppingListCandidateBodyChanged(''));
+        dispatch(shoppingListCandidateDescriptionChanged(''));
+        dispatch(shoppingListCandidateQuantityChanged(''));
       }}
     />
     { state.loadingMode === 'loading'
