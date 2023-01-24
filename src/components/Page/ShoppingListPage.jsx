@@ -10,7 +10,7 @@ import { Context } from '../ShoppingListProvider';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
-  console.log('state', state);
+  // console.log('state', state);
   useEffect (() => {
     getPostsEffect(dispatch);
   }, []);
