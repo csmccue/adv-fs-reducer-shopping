@@ -62,23 +62,6 @@ export const reducer = (state, action) => {
         shoppingList: newList
       };
     }
-
-
-
-      
-    case 'shopping-list-seen-changed': {
-      const shoppingList = [...state.shoppingList];
-      const index = shoppingList.findIndex(post => post.id === action.postId);
-      shoppingList[index] = {
-        ...shoppingList[index],
-        seen: action.seen,
-      };
-      return {
-        ...state,
-        shoppingList,
-      };
-    }
-
     default:
       console.error(
         `Action type not supported ${action.type}.`,
