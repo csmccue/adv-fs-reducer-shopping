@@ -47,21 +47,20 @@ export const reducer = (state, action) => {
         ...state,
         postCandidateQuantity: action.quantity,
       };
-
-    case 'shopping-list-seen-changed': { 
-      const newList = [...state.shoppingList];
-      const newIndex = newList.findIndex(
-        item => item.id === action.itemId
-      );
-      newList[newIndex] = {
-        ...newList[newIndex],
-        checked: action.checked 
+    case 'shopping-list-seen-changed': {
+      const { itemId, done } = action;
+      const shoppingList = [...state.shoppingList];
+      const index = shoppingList.findIndex(item => item.id === itemId);
+      shoppingList[index] = {
+        ...shoppingList[index],
+        done,
       };
-      return { 
+      return {
         ...state,
-        shoppingList: newList
+        shoppingList,
       };
     }
+
     default:
       console.error(
         `Action type not supported ${action.type}.`,
